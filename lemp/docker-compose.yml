@@ -54,6 +54,34 @@ services:
     networks:
       - app-network
 
+  #phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db:db
+    ports:
+      - 8000:80
+    environment:
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: your_mysql_root_password
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+    networks:
+      - app-network
+
+  #PhpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db:db
+    ports:
+      - 8000:80
+    environment:
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: your_mysql_root_password
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+    networks:
+      - app-network
+
 #Docker Networks
 networks:
   app-network:
