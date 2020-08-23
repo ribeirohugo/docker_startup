@@ -18,6 +18,7 @@ Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **Home HTTP directory**: /var/www/public_html/
+- **.conf file**: /usr/local/apache2/conf/httpd.conf
 
 ## To change
 Don't to forget to define your MySQL root password and also change it in phpMyAdmin, in `docker-compose.yml` file.
