@@ -1,0 +1,82 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: start_app/php
+    container_name: app_lamp
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./public_html:/var/www
+      - ./php/local.ini:/etc/php/7.3/apache2/local.ini
+    networks:
+      - app-network
+
+  #Apache Service
+  webserver:
+    image: httpd:2.4
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./public_html/:/var/www
+      - ./apache/conf.d/:/etc/apache2/
+      - ./apache/conf.d/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - app-network
+
+  #MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  #phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    tty: true
+    links:
+      - db:db
+    ports:
+      - 8000:80
+    environment:
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: your_mysql_root_password
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
