@@ -57,6 +57,9 @@ services:
   #phpMyAdmin Service
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    tty: true
     links:
       - db:db
     ports:
