@@ -1,0 +1,1 @@
+docker exec --user root -it app /bin/bash
