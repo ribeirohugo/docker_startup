@@ -24,6 +24,10 @@ Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 Don't to forget to define your MySQL root password and also change it in phpMyAdmin, in `docker-compose.yml` file.
 
 ```bash
-MYSQL_DATABASE: laravel
-MYSQL_ROOT_PASSWORD: your_mysql_root_password
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laraveluser
+DB_PASSWORD=your_laravel_db_passwor
 ```
