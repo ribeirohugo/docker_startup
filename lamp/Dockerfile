@@ -1,10 +1,7 @@
 FROM php:7.3-fpm
 
-#Add apache files
-#COPY ./apache/ /usr/local/apache2/htdocs/
-
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/public
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -55,7 +52,7 @@ COPY ./apache/conf.d/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY --chown=www:www . /var/www/public
 
 # Change current user to www
-USER root
+USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
