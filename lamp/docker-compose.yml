@@ -2,7 +2,7 @@ version: '3'
 services:
 
   #PHP Service
-  app:
+  php:
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
-      - ./public_html:/var/www
+      - ./public_html:/var/www/public
       - ./php/local.ini:/etc/php/7.3/apache2/local.ini
     networks:
       - app-network
@@ -30,7 +30,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./public_html/:/var/www
+      - ./public_html/:/var/www/public
       - ./apache/conf.d/:/etc/apache2/
       - ./apache/conf.d/httpd.conf:/usr/local/apache2/conf/httpd.conf
     networks:

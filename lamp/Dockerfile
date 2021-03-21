@@ -1,7 +1,7 @@
 FROM php:7.3-fpm
 
 #Add apache files
-#COPY ./public_html/ /usr/local/apache2/htdocs/
+#COPY ./apache/ /usr/local/apache2/htdocs/
 
 # Set working directory
 WORKDIR /var/www
@@ -21,6 +21,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev
 
+# Install PHP
+RUN apt-get install software-properties-common -y
+RUN apt upgrade -y
+RUN apt update -y
+RUN docker-php-ext-install mysqli
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -37,7 +43,7 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy existing application directory contents
-COPY ./public_html /var/www
+COPY ./public_html /var/www/public
 
 # Copy existing application directory contents
 COPY ./apache/conf.d/ /etc/apache2/
@@ -46,7 +52,7 @@ COPY ./apache/conf.d/ /etc/apache2/
 COPY ./apache/conf.d/httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=www:www . /var/www/public
 
 # Change current user to www
 USER root
