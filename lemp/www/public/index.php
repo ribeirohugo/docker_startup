@@ -5,7 +5,9 @@
 </head>
 <body>
 
-<h1>This is your homepage!</h1>
+<h1>
+<?php echo "This is your homepage!"; ?>
+</h1>
 
 </body>
 </html>

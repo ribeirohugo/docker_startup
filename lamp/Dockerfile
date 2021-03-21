@@ -1,7 +1,7 @@
 FROM php:7.3-fpm
 
 # Set working directory
-WORKDIR /var/www/public
+WORKDIR /var/www/
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,7 +40,7 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy existing application directory contents
-COPY ./public_html /var/www/public
+COPY ./www /var/www/
 
 # Copy existing application directory contents
 COPY ./apache/conf.d/ /etc/apache2/
@@ -49,7 +49,7 @@ COPY ./apache/conf.d/ /etc/apache2/
 COPY ./apache/conf.d/httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www/public
+COPY --chown=www:www . /var/www/
 
 # Change current user to www
 USER www
