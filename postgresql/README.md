@@ -6,7 +6,7 @@ Guidelines to set up a PostgreSQL docker build based on different sources.
 
 1. Start by pulling the Dockerfile from this folder.
 
-2. Pull Postgre image from docker
+2. Pull Postgres image from docker
 
     ```docker pull postgres```
 
@@ -46,6 +46,20 @@ Source: [Docker](https://docs.docker.com/engine/examples/postgresql_service/)
    ```docker-compose -f stack.yml up``` 
 
 Source: [Docker Hub](https://hub.docker.com/_/mysql)
+
+## Initialize database
+
+Run ``init_db.bat`` with the following code and make changes according to Docker container name and SQL schema file.
+
+````
+docker cp example.sql postgresql_database_1:/docker-entrypoint-initdb.d/example.sql
+docker exec -u root postgresql_database_1 psql docker docker -f /docker-entrypoint-initdb.d/example.sql
+````
+
+``example.sql`` - SQL file with database schema.
+
+``postgresql_database_1`` - Docker container name.
+
 
 ## SQL Developer Setup
 
