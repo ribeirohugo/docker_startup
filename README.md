@@ -15,7 +15,7 @@ Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
 Part of this code was based on [@ Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose) information and should be read in there. You can also check more detailed instructions.
 
 ## LAMP stack startup
-Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP 7.3 + phpMyAdmin
+Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 
 - **Project paths:** 
    - [Lamp . PHP 7.3-fpm](/lamp/php7.3-fpm)
