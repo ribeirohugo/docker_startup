@@ -17,7 +17,10 @@ Part of this code was based on [@ Digital Ocean](https://www.digitalocean.com/co
 ## LAMP stack startup
 Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP 7.3 + phpMyAdmin
 
-- **Project path:** [/ribeirohugo/lamp](lamp)
+- **Project paths:** 
+   - [Lamp . PHP 7.3-fpm](/lamp/php7.3-fpm)
+   - [Lamp . PHP 7.4-fpm](/lamp/php7.4-fpm)
+   - [Lamp . PHP 8.0-fpm](/lamp/php8.0-fpm)
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
