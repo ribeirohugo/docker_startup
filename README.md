@@ -2,9 +2,12 @@
 This project will be used to store all startup configurations, files and documentation for star new docker containers.
 
 ## LEMP stack startup
-Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP 7.3 + phpMyAdmin
+Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
 
-- **Project path:** [/ribeirohugo/lemp](lemp)
+- **Project paths:** 
+   - [Lemp . PHP 7.3-fpm](/lemp/php7.3-fpm)
+   - [Lemp . PHP 7.4-fpm](/lemp/php7.4-fpm)
+   - [Lemp . PHP 8.0-fpm](/lemp/php8.0-fpm)
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
@@ -29,7 +32,7 @@ DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=laraveluser
-DB_PASSWORD=your_laravel_db_passwor
+DB_PASSWORD=your_laravel_db_password
 ```
 
 ## SQL Servers
