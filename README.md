@@ -8,6 +8,7 @@ Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
    - [Lemp . PHP 7.3-fpm](/lemp/php7.3-fpm)
    - [Lemp . PHP 7.4-fpm](/lemp/php7.4-fpm)
    - [Lemp . PHP 8.0-fpm](/lemp/php8.0-fpm)
+   - [Lemp . PHP 7.4-fpm . w/ Xdebug enabled](/lemp/php7.4-fpm-xdebug)
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
