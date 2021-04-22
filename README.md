@@ -4,24 +4,26 @@ This project will be used to store all startup configurations, files and documen
 ## LEMP stack startup
 Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
 
-- **Project paths:** 
+**Project paths**:
    - [Lemp . PHP 7.3-fpm](/lemp/php7.3-fpm)
    - [Lemp . PHP 7.4-fpm](/lemp/php7.4-fpm)
    - [Lemp . PHP 8.0-fpm](/lemp/php8.0-fpm)
    - [Lemp . PHP 7.4-fpm . w/ Xdebug enabled](/lemp/php7.4-fpm-xdebug)
+
+**Other configs**:
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
 
-Part of this code was based on [@ Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose) information and should be read in there. You can also check more detailed instructions.
-
 ## LAMP stack startup
 Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 
-- **Project paths:** 
+**Project paths**:
    - [Lamp . PHP 7.3-fpm](/lamp/php7.3-fpm)
    - [Lamp . PHP 7.4-fpm](/lamp/php7.4-fpm)
    - [Lamp . PHP 8.0-fpm](/lamp/php8.0-fpm)
+   
+**Other configs**: 
 - **URL**: localhost:80
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
