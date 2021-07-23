@@ -1,7 +1,7 @@
 # Docker Startup
 This project will be used to store all startup configurations, files and documentation for star new docker containers.
 
-## LEMP stack startup
+## 1. LEMP stack startup
 Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
 
 **Project paths**:
@@ -15,7 +15,7 @@ Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
 - **phpMyAdmin URL**: localhost:8000
 - **HTTP public directory**: /var/www/public/
 
-## LAMP stack startup
+## 2. LAMP stack startup
 Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 
 **Project paths**:
@@ -29,7 +29,7 @@ Startup configs for a LEMP stack: Linux + Apache + MySQL + PHP + phpMyAdmin
 - **HTTP public directory**: /var/www/public/
 - **.conf file**: /usr/local/apache2/conf/httpd.conf
 
-## To change
+### 2.1. To change
 Don't to forget to define your MySQL root password and also change it in phpMyAdmin, in `docker-compose.yml` file.
 
 ```bash
@@ -41,7 +41,14 @@ DB_USERNAME=laraveluser
 DB_PASSWORD=your_laravel_db_password
 ```
 
-## SQL Servers
+## 3. Golang
+
+To mount a Golang container image just run ``docker-compose up`` command, in the following version directories available:
+
+- [Golang 1.15](golang/golang1.15)
+- [Golang 1.16](golang/golang1.16)
+
+## 4. SQL Servers
 In order to easily create SQL server through Docker, the following documentation provides basic guidelines and configurations.
 
 - [Mysql](mysql)
