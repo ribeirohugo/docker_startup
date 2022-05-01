@@ -1,5 +1,5 @@
 # Docker Startup
-This project will be used to store all startup configurations, files and documentation for star new docker containers.
+This project will be used to store all startup configurations, files and documentation for start new docker containers.
 
 ## 1. LEMP stack startup
 Startup configs for a LEMP stack: Linux + Nginx + MySQL + PHP + phpMyAdmin
@@ -54,3 +54,8 @@ In order to easily create SQL server through Docker, the following documentation
 - [MySQL](mysql)
 - [MS SQL](mssql)
 - [PostgreSQL](postgresql)
+
+## 5. Project Management
+Docker allows deploying project management platforms locally:
+
+- [Jira](jira)
