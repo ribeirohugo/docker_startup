@@ -59,3 +59,9 @@ In order to easily create SQL server through Docker, the following documentation
 Docker allows deploying project management platforms locally:
 
 - [Jira](jira)
+
+## WSL Windows
+
+Check the following tutorial to learn how to use WSL2 and Docker in Windows, without Docker Desktop:
+
+- [WSL2+Docker](WSL.md)
