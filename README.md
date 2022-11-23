@@ -60,6 +60,10 @@ Docker allows deploying project management platforms locally:
 
 - [Jira](jira)
 
+## Other Tools
+
+- [Jaeger Tracing](jaeger-tracing)
+
 ## WSL Windows
 
 Check the following tutorial to learn how to use WSL2 and Docker in Windows, without Docker Desktop:
