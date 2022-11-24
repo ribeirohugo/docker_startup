@@ -60,8 +60,9 @@ Docker allows deploying project management platforms locally:
 
 - [Jira](jira)
 
-## Other Tools
+## 6. Tracing
 
+- [Grafana](grafana)
 - [Jaeger Tracing](jaeger-tracing)
 
 ## WSL Windows
