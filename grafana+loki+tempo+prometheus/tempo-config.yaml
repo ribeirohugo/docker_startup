@@ -1,0 +1,33 @@
+server:
+  http_listen_port: 3200  # HTTP API for Tempo (Grafana uses this)
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "tempo:4317"
+        http:
+          endpoint: "tempo:4318"
+
+
+storage:
+  trace:
+    backend: local  # Use local storage for traces
+    local:
+      path: /var/tempo/traces  # Storage path for traces
+
+compactor:
+  compaction:
+    compacted_block_retention: 24h  # Keep traces for 24 hours
+
+ingester:
+  trace_idle_period: 10s   # Time before an idle trace is flushed
+  max_block_duration: 5m   # Maximum time a trace block stays open
+
+querier:
+  frontend_worker:
+    frontend_address: 127.0.0.1:9095  # Required for Tempo's query service
+
+overrides:
+  metrics_generator_processors: [service-graphs, span-metrics]

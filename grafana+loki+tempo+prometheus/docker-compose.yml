@@ -1,0 +1,115 @@
+networks:
+  grafana:
+
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "55679:55679" # zPages
+    depends_on:
+      - tempo
+    networks:
+      - grafana
+
+  tempo:
+    image: grafana/tempo:latest
+    command: ["-config.file=/etc/tempo-config.yaml"]
+    volumes:
+      - ./tempo-config.yaml:/etc/tempo-config.yaml
+    ports:
+      - "3200:3200"
+      # - "4317:4317"  # gRPC
+      - "4324:4318"  # HTTP
+    networks:
+      - grafana
+
+  loki:
+    image: grafana/loki:2.9.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - grafana
+
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - --config.file=/etc/prometheus.yaml
+      - --web.enable-remote-write-receiver
+      - --enable-feature=exemplar-storage
+      - --enable-feature=native-histograms
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus.yaml
+    ports:
+      - "9090:9090"
+    networks:
+      - grafana
+
+  grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+
+        - name: Tempo
+          type: tempo
+          access: proxy
+          orgId: 1
+          url: http://tempo:3200
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: false
+          apiVersion: 1
+          uid: tempo
+          jsonData:
+            httpMethod: POST
+            tracesToLogs:
+              datasourceUid: 'loki'
+              spanStartTimeShift: '1h'
+              spanEndTimeShift: '1h'
+              filterByTraceID: true
+              filterBySpanID: false
+              mapTagNamesEnabled: false
+              tags: []
+
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          isDefault: false
+          version: 1
+          editable: false
+
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - grafana
+    depends_on:
+      - tempo
